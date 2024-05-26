@@ -1,0 +1,42 @@
+# Prompt user for a fraction formatted x/y
+# X & Y are integers
+# Output the fraction into a percent rounded to the nearest integer
+# If 1% or less remains, output 'E' for empty
+# if 99% output 'F' for full
+# if X or Y are not integers, or x is greater than Y, or Y is 0, prompt user again
+# Catch any exceptions like 'ValueError' or 'ZeroDivisionError'
+
+def main():
+    fraction = str(input("Fraction: "))
+    fraction_converted = convert(fraction)
+    output = gauge(fraction_converted)
+    print(output)    
+
+def convert(fraction):
+    while True:
+        try:
+            numerator, denominator = fraction.split("/")
+            new_numerator = int(numerator)
+            new_denominator = int(denominator)
+            fraction = new_numerator/new_denominator
+            
+            if fraction <= 1:
+                percentage = int(fraction*100)
+                return percentage
+            else:
+                fraction = input("Fraction: ")
+                pass
+        except (ValueError, ZeroDivisionError):
+            raise
+        
+def gauge(percentage):
+    if percentage <= 1:
+        return "E"
+    elif percentage >= 99:
+        return "F"
+    else:
+        return str(percentage) + "%"
+    
+            
+if __name__ == "__main__":
+    main()
