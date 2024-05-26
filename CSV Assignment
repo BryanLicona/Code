@@ -1,0 +1,60 @@
+import csv
+
+#opening the original file to be read
+# the 'r' means read
+# then we are creating a csv reader variable
+# and we are using the reader method to read the original csv file
+with open('names.csv', 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    # then we are opening a new file for writing 
+    # called new_names.csv ---- the 'w' means write
+    # again we are creating another variable but for writing
+    # we are using the writer method to modify the file
+    # the delimiter only adds dashes between the words
+    # the delimiter is optional and can be replaced with tabs (\t)
+    with open('new_names.csv', 'w') as new_file:
+        csv_writer = csv.writer(new_file, delimiter='\t')
+        #for each line in the original csv data we are 
+        # writing out to the new file each line of the csv data
+        for line in csv_reader:
+            csv_writer.writerow(line)
+
+import csv
+
+### another method is using the DictReader method
+
+#this is for the reader
+with open('names.csv', 'r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    
+    for line in csv_reader:
+        # this method will allow you specifically isolate
+        # variables in your csv file for example
+            # 'email' or 'phone number' or 'name' or 'email' etc
+            # to do that replace print with print(line['email'])
+        print(line)
+        
+# this is for the writer
+
+with open('names.csv', 'r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    
+    with open('new_names.csv', 'w') as new_file:
+        # add line to establish the field names of the data
+        # and add the field names variables
+        fieldnames = ['first_name', 'last_name', 'email', 'age', 'gender']
+        # replace the csv.writer with DictWriter
+        csv_writer = csv.DictWriter(new_file, fieldnames=fieldnames, delimiter='\t', lineterminator='\n')
+        #csv_writer = csv.writer(new_file, delimiter='\t')
+        # if you want the headers (can be optional)
+        # add the code line below
+        csv_writer.writeheader()
+        
+        for line in csv_reader:
+            #if you want to remove an entire section of the data
+            # that corresponds with a variable DictReader is easier
+            # simply remove the section in the fieldnames variable
+            # and write the line of code below. (2 steps)
+            
+            #del line['email']
+            csv_writer.writerow(line)
