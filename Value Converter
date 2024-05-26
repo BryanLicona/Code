@@ -1,0 +1,362 @@
+def convert_temperature():
+    print("Which conversion do you want to choose:")
+    print("1. Celsius to Fahrenheit")
+    print("2. Fahrenheit to Celsius")
+    print("3. Kelvin to Celsius")
+    print("4. Celsius to Kelvin")
+    print("5. Fahrenheit to Kelvin")
+    print("6. Kelvin to Fahrenheit")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        temp = float(input("Enter temperature in Degree Celsius: "))
+        print(f"{temp} Degree Celsius is equal to {round((temp*9/5)+32)} Degree Fahrenheit.")
+    elif choice == 2:
+        temp = float(input("Enter temperature in Degree Fahrenheit: "))
+        print(f"{temp} Degree Fahrenheit is equal to {round((temp-32)*5/9)} Degree Celsius.")
+    elif choice == 3:
+        temp = float(input("Enter temperature in Degree Kelvin: "))
+        print(f"{temp} Degree Kelvin is equal to {round((temp-372.14))} Degree Celsius.")
+    elif choice == 4:
+        temp = float(input("Enter temperature in Degree Celsius: "))
+        print(f"{temp} Degree(s) Celsius is equal to {round((temp+273.15))} Degree Kelvin.")
+    elif choice == 5: 
+        temp = float(input("Enter temperature in Degree Fahrenheit: "))
+        print(f"{temp} Degree(s) Fahrenheit is equal to {round(((temp-32)*(5/9)+273.15))}")
+    elif choice == 6:
+        temp = float(input("Enter temperature in Degree Fahrenheit: "))
+        print(f"{temp} Degree Kelvin(s) is equal to {round(((temp-273.15)*(9/5)+32))}")
+    else:
+        print("Invalid input -- Input one of the options available!")
+        
+        
+def convert_currency():
+    print("Which currency conversion would you like to choose: ")
+    print("1. Dollar to Pound")
+    print("2. Pound to Dollar")
+    print("3. Dollar to Euro")
+    print("4. Euros to Dollars")
+    print("5. Dollars to Bulgarian Lev")
+    print("6. Bulgarian Lev to dollars")
+    print("7. Dollars to Argentine Peso")
+    print("8. Argentine Peso to dollars")
+    print("9. Dollars to Egyptian Pound")
+    print("10. Egyptian Pound to dollars")
+    print("11. Dollars to Fijian dollars")
+    print("12. Fijian dollars to dollars")
+    print("13. Dollars to Israeli New Shekel")
+    print("14. Israeli New Shekel to dollars")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        value = float(input("Enter currency in dollars: "))
+        print(f"{value} dollars in pounds will be {value*0.73}")
+    elif choice == 2:
+        value = float(input("Enter currency in pounds: "))
+        print(f"{value} pounds in dollars will be {value/0.73}")
+    elif choice == 3:
+        value = float(input("Enter currency in dollars: "))
+        print(f"{value} dollars in euros will be {value*0.93}")
+    elif choice == 4:
+        value = float(input("Enter currency in Euros: "))
+        print(f"{value} euros in dollars will be {value/0.93}")
+    elif choice == 5:
+        value = float(input("Enter currency in dollars: "))
+        print(f"{value} dollars in bulgarian lev will be {value*1.82}")
+    elif choice == 6:
+        value = float(input("Enter currency in Bulgarian Lev: "))
+        print(f"{value} Bulgarian lev in dollars will be {value/1.82}")
+    elif choice == 7:
+        value = float(input("Enter currency in dollars: "))
+        print(f"{value} Dollars in Argentine peso will be {value*829.52}")
+    elif choice == 8:
+        value = float(input("Enter currency in Argentine Peso: "))
+        print(f"{value} Argentine peso in dollars will be {value/829.52}")
+    elif choice == 9:
+        value = float(input("Enter currency in dollars: "))
+        print(f"{value} dollars in Egyptian Pound will be {value*30.90}")
+    elif choice == 10:
+        value = float(input("Enter currency in Egyptian Pound: "))
+        print(f"{value} Egyptian pounds in dollars will be {value/30.90}")
+    elif choice == 11:
+        value = float(input("Enter currency in dollars: "))
+        print(f"{value} dollars in Fijian Dollar will be {value*2.25}")
+    elif choice == 12:
+        value = float(input("Enter currency in Fijian Dollar: "))
+        print(f"{value} Fijian Dollar will be {value/2.25}")
+    elif choice == 13:
+        value = float(input("Enter currency in dollars: "))
+        print(f"{value} dollars in Israeli New Shekel will be {value*3.65}")
+    elif choice == 14:
+        value = float(input("Enter currency in Israeli New Shekel: "))
+        print(f"{value} Israeli New Shekel in dollars will be {value/3.65}")
+    
+
+def convert_lengths():
+    print("Which conversion do you want to choose: ")
+    print("1. Centimeters to foot and inches")
+    print("2. Foot and inches to centimeter")
+    print("3. Centimeter(s) to inch(es)")
+    print("4. Centimeter(s) to Kilometer")
+    print("5. Centimeter(s) to Meter(s)")
+    print("6. Centimeter(s) to Millimeter(s)")
+    print("7. Centimeter(s) to Micrometer(s)")
+    print("8. Centimeter(s) to Nanometer(s)")
+    print("9. Centimeter(s) to Mile(s)")
+    print("10. Centimeter(s) to Yard(s)")
+    print("11. Centimeter(s) to Feet")
+    print("12. Centimeter(s) to Nautical Mile(s)")
+    print("13. Kilometer(s) to Meter(s)")
+    print("14. Kilometer(s) to Centimeter(s)")
+    print("15. Kilometer(s) to Millimeter(s)")
+    print("16. Kilometer(s) to Micrometer(s)")
+    print("17. Kilometer(s) to Nanometer(s)")
+    print("18. Kilometer(s) to Mile(s)")
+    print("19. Kilometer(s) to Yard(s)")
+    print("20. Kilometer(s) to Feet")
+    print("21. Kilometer(s) to Inches")
+    print("22. Kilometer(s) to Nautical Mile(s)")
+    
+    
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        value = float(input("Enter length in cm: "))
+        inches = value/2.54
+        feet = inches/12
+        print(f"{value} Centimeter(s) is equal to {feet} Feet and {inches} Inch")
+    elif choice == 2:
+        feet = float(input("Enter length in feet: "))
+        inches = float(input("Enter length in inches: "))
+        length = (feet*12 + inches)*2.54
+        print(f"{feet} Feet and {inches} Inches in Centimeter(s) will be {length}")
+    elif choice == 3:
+        value = float(input("Enter length in cm: "))
+        inches = value/2.54
+        print(f"{value} Centimeter(s) is equal to {value/2.54} inch(es)")
+    elif choice == 4:
+        value = float(input("Enter length in cm: "))
+        kilometers = value/10**-5
+        print(f"{value} Centimeter(s) is equal to {kilometers} Kilometer(s) ")
+    elif choice == 5:
+        value = float(input("Enter length in cm: "))
+        length = value/100
+        print(f"{value} Centimeter(s) is equal to {length} Meter(s)")
+    elif choice == 6:
+        value = float(input("Enter length in cm: "))
+        length = value*10
+        print(f"{value} Centimeter(s) is equal to {length} Millimeter(s)")
+    elif choice == 7:
+        value = float(input("Enter length in cm: "))
+        length = value*10000
+        print(f"{value} Centimeter(s) is equal to {length} Micrometer(s)")
+    elif choice == 8:
+        value = float(input("Enter length in cm: "))
+        length = value*10**7
+        print(f"{value} Centimeter(s) is equal to {length} Nanometer(s)")
+    elif choice == 9: 
+        value = float(input("Enter length in cm: "))
+        length = value/160900
+        print(f"{value} Centimeter(s) is equal to {length} Mile(s)")
+    elif choice == 10:
+        value=float(input("Enter length in cm: "))
+        length = value/91.44
+        print(f"{value} Centimeter(s) is equal to {length} Yard(s)")
+    elif choice == 11:
+        value=float(input("Enter length in cm: "))
+        length = value/30.48
+        print(f"{value} Centimeter(s) is equal to {length} Feet")
+    elif choice == 12:
+        value=float(input("Enter length in cm: "))
+        length = value/185200
+        print(f"{value} Centimeter(s) is equal to {length} Nautical Mile(s)")
+    elif choice == 13:
+        value=float(input("Enter length in Kilometer(s): "))
+        length = value*1000
+        print(f"{value} Kilometer(s) is equal to {length} Meter(s)")
+    elif choice == 14:
+        value=float(input("Enter length in Kilometer(s): "))
+        length = value*100000
+        print(f"{value} Kilometer(s) is equal to {length} Centimeter(s)")
+    elif choice == 15:
+        value=float(input("Enter length in Kilometer(s): "))
+        length = value*10**6
+        print(f"{value} Kilometer(s) is equal to {length} Millimeter(s)")
+    elif choice == 16:
+        value=float(input("Enter length in Kilometer(s): "))
+        length = value*10**9
+        print(f"{value} Kilometer(s) is equal to {length} Micrometer(s)")
+    elif choice == 17:
+        value = float(input("Enter length in Kilometer(s): "))
+        length = value*10**12
+        print(f"{value} Kilometer(s) is equal to {length} Nanometer(s)")
+    elif choice == 18:
+        value=float(input("Enter length in Kilometer(s): "))
+        length = value/1.609
+        print(f"{value} Kilometer(s) is equal to {length} Mile(s)")
+    elif choice == 19:
+        value=float(input("Enter length in Kilometer(s): "))
+        length = value*1094
+        print(f"{value} Kilometer(s) is equal to {length} Yard(s)")
+    elif choice == 20:
+        value=float(input("Enter length in Feet: "))
+        length = value*3281
+        print(f"{value} Kilometer(s) is equal to {length} Feet")
+    elif choice == 21:
+        value=float(input("Enter length in Kilometer(s): "))
+        length = value*39370
+        print(f"{value} Kilometer(s) is equal to {length} Inches")
+    elif choice == 22:
+        value=float(input("Enter length in Kilometer(s): "))
+        length = value/1.852
+        print(f"{value} Kilometer(s) is equal to {length} Nautical Mile(s)")
+                
+        
+def convert_weight():
+    print("Which conversion do you want to choose: ")
+    print("1. Gram(s) to Pound(s)")
+    print("2. Pound(s) to Gram(s)")
+    print("3. Kilogram(s) to Pound(s)")
+    print("4. Pound(s) to Kilogram(s)")
+    print("5. Ounce(s) to Pound(s)")
+    print("6. Pound(s) to Ounce(s)")
+    print("7. Gram(s) to Milligram(s)")
+    print("8. Milligram(s) to Gram(s)")
+    print("9. Stone(s) to Pound(s)")
+    print("10. Pound(s) to Stone(s)")
+    print("11. Imperial ton(s) to Pound(s)")
+    print("12. Pound(s) to Imperial ton(s)")
+    print("13. Metric Ton(s) to Pound(s)")
+    print("14. Pound(s) to Metric Ton(s)")
+    print("15. Ounce(s) to Gram(s)")
+    print("16. Gram(s) to Ounce(s)")
+    print("17. US Ton(s) to Gram(s)")
+    print("18. Gram(s) to US Ton(s)")
+    print("19. US Ton(s) to Metric Ton(s)")
+    print("20. Metric Ton(s) to US Ton(s)")
+    print("21. US Ton(s) to Pound(s)")
+    print("22. Pound(s) to US Ton(s)")
+    print("23. Imperial Ton(s) to Ounce(s)")
+    print("24. Ounce(s) to Imperial Ton(s)")
+    print("25. Stone(s) to Ounce(s)")
+    print("26. Ounce(s) to Stone(s)")
+    print("27. Stone(s) to Kilogram(s)")
+    print("28. Kilogram(s) to Stone(s)")
+    print("29. Microgram(s) to Kilogram(s)")
+    print("30. Kilogram(s) to Microgram(s)")
+    
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        value = float(input("Enter weight in gram(s): "))
+        print(f"{value} Grams in Pounds will be {value*0.0022}")
+    elif choice == 2:
+        value = float(input("Enter weight in pounds: "))
+        print(f"{value} Pounds in Gram(s) will be {value/0.0022}")
+    elif choice == 3:
+        value = float(input("Enter weight in Kilograms: "))
+        print(f"{value} Kilogram(s) in Pounds will be {value*2.21}")
+    elif choice == 4:
+        value = float(input("Enter weight in pounds: "))
+        print(f"{value} Pounds in Kilogram(s) will be {value/2.21}")
+    elif choice == 5:
+        value = float(input("Enter weight in ounces: "))
+        print(f"{value} Ounce(s) in Pounds will be {value*0.063}")
+    elif choice == 6:
+        value = float(input("Enter weight in Pounds: "))
+        print(f"{value} Pounds in Ounces will be {value/0.061}")
+    elif choice == 7:
+        value = float(input("Enter weight in Gram(s): "))
+        print(f"{value} Gram(s) in Milligram will be {value*1000}")
+    elif choice == 8:
+        value = float(input("Enter weight in Milligram: "))
+        print(f"{value} Milligram(s) in Gram(s) will be {value/1000} ")
+    elif choice == 9:
+        value = float(input("Enter weight in Stone: "))
+        print(f"{value} Stone(s) in Pound(s) will be {value*14}")
+    elif choice == 10:
+        value = float(input("Enter weight in Pound: "))
+        print(f"{value} Pound(s) in Stone(s) will be {value/14}")
+    elif choice == 11:
+        value = float(input("Enter weight in Imperial Ton: "))
+        print(f"{value} Imperial ton in pound(s) will be {value*2240}")
+    elif choice == 12:
+        value = float(input("Enter weight in Pound(s)"))
+        print(f"{value} Pound(s) in Imperial ton(s) will be {value/2240}")
+    elif choice == 13:
+        value=float(input("Enter weight in Metric Ton: "))
+        print(f"{value} Metric Ton(s) in Pound(s) will be {value*2204.62}")
+    elif choice == 14:
+        value=float(input("Enter weight in Pound: "))
+        print(f"{value} Pound(s) in Metric Ton(s) will be {value*0.0005}")
+    elif choice == 15:
+        value=float(input("Enter weight in Ounce(s): "))
+        print(f"{value} ounce(s) in Gram(s) will be {value*28.35}")
+    elif choice == 16:
+        value=float(input("Enter weight in Gram: "))
+        print(f"{value} Gram(s) in Ounce(s) will be {value*28.35}")
+    elif choice == 17:
+        value=float(input("Enter weight in US Ton: "))
+        print(f"{value} US Ton(s) in Gram(s) will be {value*907185}")
+    elif choice == 18:
+        value=float(input("Enter weight in Gram(s): "))
+        print(f"{value} Gram(s) in US Ton will be {value/907200}")
+    elif choice == 19:
+        value=float(input("Enter weight in US Ton: "))
+        print(f"{value} US Ton(s) in Metric Ton(s) will be {value/1.102}")
+    elif choice == 20:
+        value=float(input("Enter weight in Metric Ton: "))
+        print(f"{value} Metric Ton(s) in US Ton(s) will be {value*1.102}")
+    elif choice == 21:
+        value=float(input("Enter weight in US Ton: "))
+        print(f"{value} US Ton(s) in Pound(s) will be {value*2000}")
+    elif choice == 22:
+        value=float("Enter weight in Pound(s): ")
+        print(f"{value} Pound(s) in US Ton(s) will be {value/2000}")
+    elif choice == 23:
+        value=float(input("Enter weight in Imperial Ton(s): "))
+        print(f"{value} Imperial Ton(s) in Ounce(s) will be {value*35840}")
+    elif choice == 24:
+        value=float(input("Enter weight in Ounce(s): "))
+        print(f"{value} Ounce(s) in Imperial Ton(s) will be {value/35840}")
+    elif choice == 25:
+        value=float(input("Enter weight in Stone(s): "))
+        print(f"{value} Stone(s) in Ounce(s) will be {value*224}")
+    elif choice == 26:
+        value=float(input("Enter weight in Ounce(s): "))
+        print(f"{value} Ounce(s) in Stone(s) will be {value/224}")
+    elif choice == 26:
+        value=float(input("Enter weight in Stone(s)"))
+        print(f"{value} Stone(s) in Kilogram(s) will be {value*6.35}")
+    elif choice == 27:
+        value=float(input("Enter weight in Kilogram(s)"))
+        print(f"{value} Kilogram(s) in Stone(s) will be {value/6.35}")
+    elif choice == 28:
+        value=float(input("Enter weight in Kilogram(s)"))
+        print(f"{value} Kilogram(s) in Microgram(s) will be {value*10**9}")
+    elif choice == 29:
+        value=float(input("Enter weight in Microgram(s): "))
+        print(f"{value} Microgram(s) in Kilogram(s) will be {value*10**-9}")
+    elif choice == 30:
+        value=float(input("Enter weight in Kilogram(s): "))
+        print(f"{value} Kilogram(s) in Microgram(s) will be {value*10**9}")
+    
+    
+################################
+print(" Welcome to Value Converter ")
+while 1:
+    print("Which option would you like to choose: ")
+    print("1. Convert temperature")
+    print("2. Convert currency")
+    print("3. Convert lengths")
+    print("4. Convert weight")
+    print("5. Exit")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        convert_temperature()
+    elif choice == 2:
+        convert_currency()
+    elif choice == 3:
+        convert_lengths()
+    elif choice == 4:
+        convert_weight()
+    elif choice == 5:
+        print("Exiting...")
+        exit(0)
+#################################        
