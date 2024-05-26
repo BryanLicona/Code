@@ -1,0 +1,7 @@
+import validators
+
+
+
+value = input("What's your email address? ")
+
+print("Valid") if validators.email(value) == True else print("Invalid")
