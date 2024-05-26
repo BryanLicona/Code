@@ -1,0 +1,127 @@
+from utils import *
+import pygame
+
+# SETTING UP WINDOW
+WIN = pygame.display.set_mode(WIDTH, HEIGHT)
+pygame.display.set_caption("Drawing Program")
+
+# FUNCTION BELOW CREATES ROWS AND COLUMNS 
+# TO FIGURE OUT WHERE THE PIXEL SHOULD BE ON
+# WE USE THE MATH FORUMAL IN THE ()
+def draw_grid(win, grid):
+    for i, row in enumerate(grid):
+        for j, pixel in enumerate(row):
+            pygame.draw.rect(win, pixel, (j * PIXEL_SIZE, i * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE))
+            
+    if DRAW_GRID_LINES:
+        for i in range(ROWS + 1):
+            pygame.draw.line(win, BLACK, (0, i * PIXEL_SIZE), (i * PIXEL_SIZE))
+        
+        for j in range(COLS + 1):
+            pygame.draw.line(win, BLACK, (i * PIXEL_SIZE, 0), (i * PIXEL_SIZE, HEIGHT - TOOLBAR_HEIGHT))
+
+
+#this will create the window to actually draw stuff
+def draw(win, grid, buttons):
+    win.fill(BG_COLOR)
+    #to incorporate the draw grid function add here
+    draw_grid(win, grid)
+    
+    # to loop the buttons
+    for button in buttons:
+        button.draw(win)
+    #any changes need to be updated so this will automatically update it
+    pygame.display.update()
+
+# will be used to set up grids for the pixels
+def init_grid(rows, cols, color):
+    grid = []
+    
+    for i in range(rows):
+        grid.append([])
+        for _ in range(cols):
+            grid[i].append(color)
+            
+    return grid
+
+# make a function to figure out the position of the cursor
+def get_row_col_from_pos(pos):
+    x,y = pos
+    row = y// PIXEL_SIZE
+    col = x// PIXEL_SIZE
+    
+    if row >=  ROWS:
+        raise IndexError
+    
+    return row, col
+
+
+run = True
+# to set up speed of game
+clock = pygame.time.Clock()
+grid = init_grid(ROWS, COLS, BG_COLOR)
+drawing_color = BLACK
+
+
+# here is the setup for the buttons
+# the reason for dividing by 2 is because the height of the button
+# is already 50 so you need to shorten it and take into consideration the
+# distance of the toolbar. 
+# THE 10 IS PADDING BETWEEN BUTTONS
+button_y = HEIGHT - TOOLBAR_HEIGHT/2 + 25
+buttons = [
+    Button(10, button_y, 50, 50, BLACK),
+    Button(70, button_y, 50, 50, RED),
+    Button(130, button_y, 50, 50, GREEN),
+    Button(190, button_y, 50, 50, BLUE),
+    Button(250, button_y, 50, 50, WHITE, "Erase", BLACK),
+    Button(310, button_y, 50, 50, WHITE, "Clear", BLACK)
+]
+
+
+# The even is something that will continually run
+# Won't juse show one frame, it will only end when user presses the 
+# x-button
+while run:
+    clock.tick(FPS)
+
+    for event in pygame.event.get():
+        if even.type == pygame.QUIT:
+            run = False
+        # this checks if the user pressed the left or right mouse button
+        # 0 = left, 1 = middle, 2 = right
+        if pygame.mouse.get_pressed()[0]:
+            # this tells us which pixel the user selected (coordinates)
+            pos = pygame.mouse.get_pos()
+            # to get the position of our pixel
+            try:
+                row, col = get_row_col_from_pos(pos)
+                grid[row][col] = drawing_color
+            except IndexError:
+                # to make the buttons functional and not just display sections
+                for buttons in buttons:
+                    if not button.clicked(pos):
+                        continue
+                    # the loop above simply checks if a button was selected
+                    # the line below triggers/activates the specific color button selected.
+                    drawing_color = button.color
+                    # if you are overlapping buttons do not add a break.
+                    # if you are spacing out the buttons go ahead and add a 'break'
+                    
+                    
+                    # the code below to activate the "Clear" button and ensure it 
+                    # completely resets the drawing surface by removing everything 
+                    # if you have other buttons that have specific tasks
+                    # use the same three lines of code provided below and tweak to the
+                    # buttons specific tasks 
+                    if button.text == "Clear":
+                        grid = init_grid(ROWS, COLS, BG_COLOR)
+                        drawing_color = BLACK # this will ensure the screen is back to black and ready for drawing
+                    
+            
+    #this will call the draw function created above
+    # also changes can be made to ensure that the 
+    # window is changed
+    draw(WIN, grid, buttons)
+            
+pygame.quit()
