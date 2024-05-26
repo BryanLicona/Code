@@ -1,0 +1,177 @@
+# F strings
+
+name = "Bryan"
+
+print("Hello " + name)
+print("Hello "  + name)
+print(f"Hello, {name}!")
+
+# Unpacking
+tup = (1, 2, 3, 4, 5)
+
+lst = [1, 2, 3, 4, 5]
+
+string = "hello"
+
+dic = {"a": 1, "b": 2}
+
+coords = [4, 5]
+
+a, b, c, d, e = tup
+print(a, b, c, d, e)
+
+
+# Multiple Assignments
+
+width, height = 400, 500
+
+
+
+width, height = height, width
+print(width, height)
+
+# comprehensions
+
+x = [0 for i in range(20)]
+print(x)
+
+x2 = [i for i in range(20)]
+print(x2)
+
+# will return even numbers
+x3 = [i for i in range(20) if i % 2 == 0]
+print(x3)
+
+x4 = [i*j for i in range(20) for j in range(10)]
+print(x4)
+
+# Remember this
+x5 = [[0 for _ in range(5)] for _ in range(5)]
+print(x5)
+# this will create a Generator object 
+x6 = (i for i in "hello")
+print(x6)
+# x6 can be used in the following style to create a list or tuple
+x7 = (i for i in "hello")
+print(list(x7))
+
+# count chars
+sentence = "hello World how's the weather?"
+x8 = {char: sentence.count(char) for char in set(sentence)}
+print(x8)
+
+# Object Multiplication
+
+x9 = " hello " * 5
+print(x9)
+
+x10 = [[1,2,3]] * 5
+print(x10)
+
+# Inline/Ternary Condition
+#python style of code below
+x11 = 1 if 2 > 3 else 0
+# the code above replaces:
+# Cleaner and shorter code
+    #if 2 > 3:
+        #x = 1
+    #else:
+        # x = 0
+
+print(x11)
+# JAVA style of code above shown below
+# condition goes first 
+#x11 = 2 > 3 ? 1 : 0
+
+# Zip function
+
+names = ["time", "joe", "billy", "sally"]
+ages = [21, 19, 18, 43]
+eye_color = ["blue", "brown", "brown", "green"]
+# Combines the items together
+#print(list(zip(names, ages, eye_color)))
+# Also
+for name, age, eye_color in zip(names, ages, eye_color):
+    if age > 20:
+        print(name)
+    print(eye_color)
+
+# *args and **kwargs
+def func1(arg1, arg2, arg3):
+    print(arg1, arg2, arg3)
+    
+def func2(arg1=None, arg2=None, arg3=None):
+    print(arg1, arg2, arg3)
+    
+args = [1, 2, 3]
+kwargs = {"arg2": 2, "arg1": 1, "arg3": 3}
+# one option for statement/strings
+#func1(args[0], args[1], args[2])
+#another option
+func1(*args)
+print(args)
+print(*args)
+print(1, 2, 3)
+
+func2(*kwargs)
+func2(**kwargs)
+
+# for else & while else
+
+search = [1, 2, 3, 4, 5, 6, 7]
+target = 7
+found = False
+# typical format used by ppl
+for element in search:
+    if element == target:
+        print("i found it!")
+        found = True
+        break
+if not found:
+    print("I didn't find it!")
+# shortcut for the code above
+search = [1, 2, 3, 4, 5, 6, 7]
+# if you change 7 to 8 you will print "I didn't find it"
+target = 7
+
+i = 0
+while i < len(search):
+    element == search[i]
+    if element == target:
+        print("I found it!")
+        break
+    i += 1
+else:
+    print("I didn't find it!")
+    
+# sort by key
+lst = [[1,2], [3,4], [4,2], [-1, 3], [4, 5], [2, 3]]
+lst.sort(key=lambda x: x[1])
+print(lst)
+#lambda is same as
+def sort_func(x):
+    return x[0] + x[1]
+
+# can also use
+lst.sort(key=lambda x: x[1] + x[0])
+print(lst)
+
+# Itertools
+import itertools
+
+lst = [1, 2, 3, 4, 5]
+sum_list = itertools.accumulate(lst)
+print(list(sum_list))
+
+# chain will combine two list into 1
+lst2 = ["A", "B", "C", "D"]
+chain_list = itertools.chain(lst, lst2)
+print(list(chain_list))
+    
+# Compress
+
+names = ["Bryan", "Sam", "Joe", "Bill", "Sally", "Gen"]
+# 1 = True 0 = False
+show = [1, 0, 1, 0, 1]
+compressed_list = itertools.compress(names, show)
+print(list(compressed_list))
