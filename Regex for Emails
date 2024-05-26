@@ -1,0 +1,9 @@
+import re
+
+email = input("What's your email? ").strip()
+# read python docs on 're' to understand the '.+' 
+# useful to consolidate code, but fairly easy to make a mistake
+if re.search(r"^\w+@(\w+\.)?\w+\.edu$", email, re.IGNORECASE):
+    print("Valid")
+else:
+    print("Invalid")
