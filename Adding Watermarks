@@ -1,0 +1,43 @@
+## The following code demonstrates how to add watermarks
+## to images using the pillow module
+
+# Import required image library
+from PIL import Image, ImageDraw, ImageFont
+
+# Create an Image Object from an Image
+im = Image.open('Image file goes here')
+width, height = im.size
+
+draw = ImageDraw.Draw(im)
+text = "sample watermark"
+
+font = ImageFont.truetype('arial.ttf', 36)
+textwidth, textheight = draw.textsize(text, font)
+
+# calculate the x,y coordinates of the text
+margin = 10
+x = width - textwidth - margin
+y = height - textheight - margin
+
+# draw watermark in the bottom right corner
+draw.text((x,y), text, font=font)
+im.show()
+
+# save watermarked image
+im.save('images/watermark.jpg')
+
+
+####### Creating thumbnail ###########
+
+from PIL import Image
+
+def tnails():
+    try:
+        image = Image.open('images/cat/jpg')
+        image.thumbnail((90,90))
+        image.save('images/thumbnail.jpg')
+        image1 = Image.open('images/thumbnail.jpg')
+        image1.show()
+    except IOError:
+        pass
+tnails()
