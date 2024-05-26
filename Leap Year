@@ -1,0 +1,31 @@
+# def is_leap(year):
+#     leap = False
+#     if year % 4 == 0:
+#         leap == True
+#         if year % 4 == 0 and year % 100 == 0:
+#             leap = False
+#             if year % 400 == 0:
+#                 leap = True
+#     return leap
+
+# year = int(input("Enter year: "))
+# leap = is_leap(year)
+
+# if leap:
+#     print(f"{year} is a leap year")
+# else:
+#     print(f"{year} is not a leap year")
+##########################################################
+from datetime import datetime
+from datetime import date
+from time import strptime
+import inflect
+import sys
+
+birthday = input("Date of Birthday: ")
+b_date_format = datetime.strptime(birthday, '%Y-%m-%d').date()
+current_date = date.today()
+difference_of_dates = (current_date - b_date_format).days
+minutes = (difference_of_dates * 24 * 60)
+
+print(minutes)
