@@ -1,0 +1,30 @@
+# Implement one or more functions that collectively test 'shorten'
+# use previous 'twttr.py' file created
+# name this file test_twttr.py
+# the 'shorten' function should accept a 'str' input and return same 'str'
+    # output should have all the vowels (A,E,I,O and U) removed as in twttr.py file
+# input should be case-sensitive (uppercase or lowercase should not matter)
+# make sure 'return' is used in 'shorten' // 'print' should ONLY be in 'main' function
+
+from twttr import shorten
+
+    
+def main():
+    test_twttr()
+    
+def test_twttr():
+    assert shorten("Hello") == "Hll"
+    assert shorten("HELLO") == "HLL"
+    assert shorten("world") == "wrld"
+    assert shorten("hello, WORLD") == "hll, WRLD"
+    assert shorten("123456") == "123456"
+    assert shorten("AEIOU") == ""
+    assert shorten("aeiou") == ""
+    assert shorten("") == ""
+    assert shorten("Hello, world!") == "Hll, wrld!"
+    assert shorten("Hello123") == "Hll123"
+    assert shorten("$%&@!") == "$%&@!"
+    
+
+if __name__ == "__main__":
+    main()
