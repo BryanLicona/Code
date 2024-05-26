@@ -1,0 +1,23 @@
+import re
+import sys
+
+
+def main():
+    print(parse(input("HTML: ")))
+
+
+def parse(s):
+    if re.search(r"<iframe(.+)*><\/iframe>", s):
+        regex = re.search(r"(https?:\/\/)?(www.)?(youtube\.com|youtu\.be|youtube-nocookie\.com)\/(?:embed\/|v\/|watch\?v=|watch\?list=(.*)&v=)?((\w|-){11})(&list=(\w+)&?)?", s, re.MULTILINE)
+        if regex:
+            split_link = regex.group()
+            return "https://youtu.be/" + regex.group(5)
+        else:
+            return "None"
+    else:
+        return "None"
+
+
+if __name__ == "__main__":
+    main()
+    
