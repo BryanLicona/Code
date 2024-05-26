@@ -1,0 +1,32 @@
+from bank import *
+
+def main():
+    test_value_zero()
+    test_value_twenty()
+    test_value_one_hundred()    
+    
+    
+def test_value_zero():
+    assert value("hello New") == 0
+    assert value("Hello") == 0
+    assert value("HeLlo Newman") == 0 
+    
+def test_value_twenty():
+    assert value("Hey, Newman") == 20
+    assert value("Hey") == 20
+    assert value("Hi") == 20
+    assert value("hi") == 20
+    assert value("Howdy") == 20
+    assert value("howdy") == 20
+    
+def test_value_one_hundred():
+    assert value("What?") == 100
+    assert value("What do you need?") == 100
+    assert value("Good morning") == 100
+    assert value("Nice day!") == 100
+    assert value("Need help?") == 100
+    assert value("What can I do for you?") == 100
+    
+
+if __name__ == "__main__":
+    main()
