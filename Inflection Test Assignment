@@ -1,0 +1,50 @@
+from datetime import datetime
+from datetime import date
+from time import strptime
+import inflect
+p=inflect.engine()
+import sys
+
+
+def main(): 
+
+    final_phrase = wrds_format()
+    print(f"{final_phrase}" + ' minutes')
+    
+def convert_min():
+
+    try:
+        
+        birthday = str(input("Date of Birthday: "))
+        b_dt_format = datetime.strptime(birthday, '%Y-%m-%d').date()
+        current_dt = date.today()
+        diff_of_dt = (current_dt - b_dt_format).days
+        min = (diff_of_dt) * (24 * 60)
+        return str(min)
+        
+    except (ValueError):
+        
+        print("Invalid date")
+        exit(1)
+            
+        
+def wrds_format(num=convert_min(), p=inflect.engine()):
+    
+    try:
+        p = inflect.engine()
+        #num=convert_min()
+        num_to_words = (p.number_to_words(num, andword = '').capitalize())
+        output = (f"{num_to_words}")
+        return(output)
+    except: 
+        ValueError
+        exit(1)
+    else:
+        exit(1)
+
+
+
+if __name__ == "__main__":
+    main()
+
+
