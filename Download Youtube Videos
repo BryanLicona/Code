@@ -1,0 +1,15 @@
+from pytube import YouTube
+
+def Download(link):
+    youtubeOject = Youtube(link)
+    # will automatically download the highest resolution available
+    youtubeOject = youtubeObject.streams.get_highest_resolution()
+    # the try/except is to be notified if any failures/successes
+    try:
+        youtubeObject.download()
+    except:
+        print("An error has occurred")
+    print("Download is completed successfully")
+    
+link = input("Enter the Youtube video URL: ")
+Download(link)
