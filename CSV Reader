@@ -1,0 +1,29 @@
+# import csv
+# from csv import DictReader
+
+
+# file_handle= open('sample1.csv', "r", encoding="utf8")
+# csv_reader = DictReader(file_handle)
+# for row in csv_reader:
+#     print(row)
+
+# file_handle.close()
+
+
+import csv
+from csv import DictReader
+import sys
+from typing import List, Dict
+
+file_handle= open('sample1.csv', "r", encoding="utf8")
+csv_reader = DictReader(file_handle)
+table: List[Dict[str, float]] = []
+
+for row in csv_reader:
+    float_row: Dict[str, float] = {}
+    for column in row:
+        float_row[column] = float(row[column])
+    table.append(float_row)
+    
+print(table)    
+file_handle.close()
