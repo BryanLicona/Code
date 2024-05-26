@@ -1,0 +1,306 @@
+from PIL import Image, ImageDraw
+
+class InvalidFactor(Exception):
+    pass
+
+def scale_by_factor(im, factor):
+    if factor < 0:
+        raise InvalidFactor("This scale factor must be greater than zero.")
+    return im.resize((round(im.width * factor), round(im.height * factor)))
+
+# this is to open and save image
+if __name__ == "__main__":
+    with Image.open("filepath") as im:
+        scaled_im = im.resize((600,600))
+        scaled_im2 = scale_by_factor(im, 2)
+        scaled_im2.save('filepath.png or filepath.jpg or filepath.jpeg')
+        
+# this is to rotate and scale images
+
+if __name__ == "__main__":
+    with Image.open("filepath") as image:
+        rotated_image = image.rotate("enter degree of rotation")
+        scaled_image1 = image.resize((200, 300))
+        scaled_image2 = image.scale_by_factor(image, 2)
+        rotated_image.save('filepath with whatever format you want') 
+        scaled_image1.save("filepath")
+        scaled_image2.save("filepath")
+        
+# to draw shapes onto images
+from PIL import Image, ImageDraw, 
+
+def add_cross_to():
+    draw = ImageDraw.Draw(im)
+    draw.((0,0) + im.size, fill=color)
+    draw.line(0, im.size[1], im.size[0], 0), fill=color)
+    return im
+    
+def add_rectangle_to(im, topleft, bottomright, color):
+    draw = ImageDraw.Draw(im)
+    draw.rectangle((topleft, bottomright), fill=color)
+    return im
+
+def add_square_to(im, topleft, size, color):
+    draw = ImageDraw.Draw(im)
+    draw.rectangle((topleft, (topleft[0] + size, topleft[1] + size)), fille=color)
+    return im
+
+def add_ellipse_to(im, topleft, bottomright, color):
+    draw = ImageDraw.Draw(im)
+    draw.ellipse((topleft, bottomright), fill=color)
+    return im
+
+def add_circle_to(im, topleft, size, color):
+    draw = ImageDraw.Draw(im)
+    draw.ellipse((topleft, (topleft[0] + size, topleft[1] + size)), fille=color)
+    return im
+
+
+if __name__ == "__main__":
+    with Image.open('filepath') as im:
+        im_cross = add_cross_to(im, (255,0,0))
+        im_cross.save("filepath")
+        
+        im_rectangle = add_rectangle_to(im, (50, 50), (750, 300), (0, 255, 0))
+        im_square = add_square_to(im, (675, 890), 240, (0,0,255))
+        im_rectangle.save("filepath")
+        im_square.save("filepath")
+        
+        im_ellipse = add_ellipse_to(im, (688, 400), (2150, 750), (0, 255, 0))
+        im_circle = add_circle_to(im, (2145, 1425), 300, (0, 0, 255))
+        im_ellipse.save("file")
+        im_circle.save("filepath")
+
+# to draw text onto picture
+
+from PIL import Image, ImageDraw, ImageFont
+
+
+def add_text(im, text, topleft, size, color):
+    font = ImageFont.truetype("font preference for your text", size)
+    draw = ImageDraw.Draw(im)
+    draw.text(topleft, text, font=font, fill = color)
+    #draw.multiline_text(topleft, text, font=font, fill=color) is for multiple lines of text on the picture
+    return im
+    
+if __name__ == "__main__":
+    with Image.open("filepath") as im:
+        im = add_text(im, "Your Text!", (100, 100), 60) # The (100,100) is the image size and the 60 is the size of text
+        #im = add_text(im, "Hello, World!\nIt's good to see you.", (100, 100, 60) is for multiple lines of text
+        im.save("filepath")
+        
+# how to manipulate images with Filters
+
+from PIL import Image, ImageDraw, ImageFilter
+
+filters = {
+    "Blur": ImageFilter.BLUR,
+    "Contour": ImageFilter.CONTOUR,
+    "Detail": ImageFilter.DETAIL,
+    "Edge Enhance": ImageFilter.EDGE_ENHANCE,
+    "Emboss": ImageFilter.EMBOSS,
+    "Find Edges": ImageFilter.FIND_EDGES,
+    "Sharpen": ImageFilter.SHARPEN,
+    "Smooth": ImageFilter.SMOOTH,
+    "Smooth More": ImageFilter.SMOOTH_MORE,
+    "Box Blur": ImageFilter.BoxBlur(1),
+    "Gaussian Blur": ImageFilter.GaussianBlur(5),
+    "Unsharp Mark": ImageFilter.UnsharpMask,
+}
+
+
+
+if __name__ == "__main__":
+    for key, value in filters.items():
+        with Image.open("imagepath") as im:
+            im = im.filter(value)
+            im.save(f"./saved-imates/{key}.jpg")
+            
+            
+### how to apply color to the image filters
+from PIL import Image, ImageDraw
+import random
+
+def draw_gradient(im, *colors, direction="diagonal"):
+    def _interpolate(start,end):
+        diffs = [(t - f) / lines for f, t in zip(start, end)]
+        for i in range(lines):
+            yield[round(value + (diff * i)) for value, diff in zip(start, diffs)]
+    draw = ImageDraw.Draw(im)
+    
+    if direction == "horizontal":
+        lines = im.width // (len(colors) - 1)
+        #try the code below to see play with the diagonal line problems
+        #lines = (image.width+image.height) // (len(colors)-1)
+    elif direction == "vertical":
+        lines - im.height // (len(colors) - 1)
+        #try the code below to see play with the diagonal line problems
+        #lines = (image.width+image.height) // (len(colors)-1)
+    else:
+        lines = (im.width * 2) // len(colors)
+        #try the code below to see play with the diagonal line problems
+        #lines = (image.width+image.height) // (len(colors)-1)
+        
+    line_number = 0
+    
+    for i in range(len(colors) - 1):
+        for color in _interpolate(colors[i], colors[i + 1]):
+            if direction == "horizontal":
+                draw.line([(line_number, 0), (line_number, im.height)], tuple(color), width=1)
+            elif direction == "vertical":
+                draw.line([(0, line_number), (im.width, line_number)], tuple(color), width=1)
+            else:
+                draw.line([(line_number, 0), (0, line_number)], tuple(color), width=1)
+                
+            line_number += 1
+            
+    return im
+
+def grayscale(im):
+    return im.convert("L") # L is for luminous
+
+def pride(im, direction="diagonal"):
+    grad = Image.new("RGBA", im.size, color=(0, 0, 0, 0))
+    colors = (
+        (240, 1, 0),
+        (255, 128, 0),
+        (255, 255, 0),
+        (0, 121, 64),
+        (64, 65, 255),
+        (161, 8, 193),
+    )
+    grad = draw_gradient(grad, *colors, direction=direction)
+    grad.putalpha(127)
+    return Image.alpha_composite(im, grad)
+
+def trans_pride(im, direction="diagonal"):
+    grad = Image.new("RGBA", im.size, color=(0, 0, 0, 0))
+    colors = (
+        (91, 206, 251),
+        (245, 168, 184),
+        (255, 255, 255),
+        (245, 168, 184),
+        (91, 286, 251),
+    )
+    grad = draw_gradient(grad, *colors, direction=direction)
+    grad.putalpha(127)
+    return Image.alpha_composite(im, grad)
+
+if __name__ == "__main__":
+    with Image.open('filepath') as im:
+        im = im.convert("RGBA")
+        grayscale_im = grayscale(im)
+        grayscale_im.save("save filepath")
+        
+        pride_im = pride(im, direction="horizontal")
+        pride_im.save("filepath") # this needs to be 'png' not jpg or jpeg
+        
+        trans_im = trans_pride(im, direction="vertical")
+        trans_im.save('filepath') 
+        
+# how to use 'masks' for image manipulation
+
+from PIL import Image, ImageDraw, ImageOps
+
+
+def make_circular(im):
+    # the following two lines of code is to offset the image and center
+    # offset = (im.width - im.height) // 2
+    # im = im.crop((offset, 0, im.height + offset, im.height))
+    mask = Image.new("L", im.size, 0) # L means luminous
+    draw = ImageDraw.Draw(mask)
+    draw.ellipse((0,0) + im.size, fill=255)
+    
+    out = ImageOps.fit(im, mask.size, centering=(0.5, 0.5)) # will eliminate everything except what's in ()
+    out.putalpha(mask)
+    return out
+
+def round_edges(im, radius):
+    mask = Image.new("L", (radius * 2, radius *2), 0)
+    draw = ImageDraw.Draw(mask)
+    draw.ellipse((0,0,radius * 2, radius *2), fill=255)
+    
+    alpha = Image.new("L", im.size, 255)
+    w, h = im.size
+    
+    alpha.paste(mask.crop((0, 0, radius, radius)), box = (0,0))
+    alpha.paste(mask.crop((0, radius, radius, radius * 2)), box = (0, h - radius))
+    alpha.paste(mask.crop((radius, 0, radius * 2, radius)), box = (w - radius, 0))
+    alpha.paste(mask.crop((radius, radius, radius * 2, radius * 2)), box = (w - radius, h - radius))
+    
+    im.putalpha(alpha)
+    return im
+
+
+
+if __name__ == "__main__":
+    with Image.open("filepath of image") as im:
+        im = im.convert("RGBA")
+        
+        circular_im = make_circular(im)
+        circular_im.save("filepath & format")
+        
+        rounded_im = round_edges(im, 100)
+        rounded_im.save("filepath")
+        
+    with Image.open("filepath") as im:
+        im = im.convert("RGBA")
+        
+        rounded_im = round_edges(im, 250)
+        rounded_im.save("filepath")
+    
+    
+### To overlay images
+# syntax: paste(self, im, box=None, mask=None)
+   # Pastes another image into this image.
+# Parameters:
+   # im: source image or pixel value(integer or tuple).
+   # box: An optional 4-tuple giving the region to paste into. If a 2-tuple is used 
+        # instead, it's treated as the upper left corner. If omitted or None, the 
+        # source is pasted into the upper left corner.
+   # mask: An optional mask image.
+   
+from PIL import Image
+
+# Opening the primary image(used in background)
+img1 = Image.open(r"BACKGROUND_IMAGE_PATH")
+
+# Opening the secondary image(overlay image)
+img2 = Image.open(r"OVERLAY_IMAGE_PATH")
+
+# Pasting img2 image on top of img1
+# starting at coordinates (0,0)
+img1.paste(img2, (0,0), mask = img2)
+
+# Display the image
+img1.show()
+
+
+###############################
+
+# Overlaying a non-alpha image
+
+img1 = Image.open(r"BACKGROUND_IMAGE_PATH")
+img2 = Image.open(r"OVERLAY_IMAGE_PATH")
+
+# No transparency mask specified,
+# simulating an raster overlay
+img1.paste(img2, (0,0))
+
+img1.show()
+
+##################
+
+from PIL import Image
+
+background_image = Image.open('background_image.png')
+
+color = (255, 0, 0, 154) # a RGBA red color with opacity of 60%
+
+overlay_image = Image.new(mode="RGBA", size=background_image.size, color=color)
+
+# write the overlay on top of the backgroundfrom position (0,0)
+background_image.paste(overlay_image,(0,0), overlay_image)
+
+# Now save a copy
+background_image.save("final_overlayed_image.png", mode="PNG")
