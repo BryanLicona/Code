@@ -1,0 +1,47 @@
+import datetime
+from datetime import datetime
+from datetime import date
+from time import strptime
+import inflect
+import sys
+
+def main(): 
+    
+    final_phrase = get_words()
+    print(f"{final_phrase}" + ' minutes')
+    
+    
+def get_minutes():
+    
+    try:
+        
+        birthday = input("Date of Birthday: ")
+        b_date_format = datetime.strptime(birthday, '%Y-%m-%d').date()
+        current_date = date.today()
+        difference_of_dates = (current_date - b_date_format).days
+        minutes = (difference_of_dates * 24 * 60)
+        
+        #Possibly move to class (if created)
+        if not b_date_format:
+            raise (SyntaxError, ValueError)
+        
+    except:
+        
+        SystemExit(1)
+    
+    else:
+    
+        return (round(minutes))
+
+def get_words():
+    
+    string = inflect.engine()
+    number = get_minutes()
+    final_word_phrase = (string.number_to_words(number, andword='').capitalize())
+    
+
+    return (final_word_phrase)
+
+if __name__ == "__main__":
+    main()
+        
