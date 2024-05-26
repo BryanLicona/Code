@@ -1,0 +1,119 @@
+from string import ascii_uppercase
+from typing import NamedTuple, Iterator
+
+
+class Question(NamedTuple):
+    statement: str
+    options: tuple[str, ...]
+    correct: str
+
+    @property
+    def prompt(self) -> str:
+        return (
+            'Enter '
+            + ', '.join(
+                f'{letter} for {option}'
+                for letter, option in zip(ascii_uppercase, self.options)
+            )
+            + ': '
+        )
+
+    def check(self, answer: str) -> bool:
+        return answer.lower() == self.correct
+
+    
+QUESTIONS = (
+    Question(
+        statement='Hitler party which came into power in 1933 is known as?',
+        options=('Labour Party', 'Nazi Party', 'Ku-Klux-Clan', 'Democratic Party'),
+        correct='b',
+    ),
+    Question(
+        statement='In which year of First World War Germany declared war on Russia and France?',
+        options=('1914', '1915', '1916', '1917'),
+        correct='a',
+    ),
+    Question(
+        statement='Joule is the SI unit of?',
+        options=('Temperature', 'Pressure', 'Energy', 'Current'),
+        correct='c',
+    ),
+    Question(
+        statement='The famous wonder of the world is named, The Leaning Tower of _____',
+        options=('Siena', 'Pisa', 'Rome', 'Milan'),
+        correct='b',
+    ),
+    Question(
+        statement='Which country is known as the "Land of Rising Sun"?',
+        options=('Japan', 'New Zealand', 'China', 'USA'),
+        correct='a',
+    ),
+    Question(
+        statement='Which continent has the highest number of countries?',
+        options=('Asia', 'Europe', 'South America', 'Africa'),
+        correct='d',
+    ),
+    Question(
+        statement='How many rings appear on the Olympics Flag?',
+        options=('1', '3', '5', '7'),
+        correct='c',
+    ),
+    Question(
+        statement='Which Planet is the 3rd closest to the Sun?',
+        options=('Earth', 'Mars', 'Jupiter', 'Venus'),
+        correct='a',
+    ),
+    Question(
+        statement='What is the largest planet in our Solar System?',
+        options=('Uranus', 'Saturn', 'Jupiter', 'Mercury'),
+        correct='c',
+    ),
+    Question(
+        statement='What planet is nearest to The Earth?',
+        options=('Venus', 'Mercury', 'Mars', 'Pluto'),
+        correct='b',
+    ),
+    Question(
+        statement='How many sides does a Heptagon have?',
+        options=('5', '6', '7', '8'),
+        correct='c',
+    ),
+)
+
+
+def ask_all() -> Iterator[int]:
+    for i, question in enumerate(QUESTIONS, 1):
+        print(f'\nQ{i}: {question.statement}')
+        answer = input(question.prompt)
+        if question.check(answer):
+            print('Correct!')
+            yield 1
+        else:
+            print(f'Incorrect! The answer was {question.correct.upper()}.')
+            yield 0
+
+
+def main() -> None:
+    n = len(QUESTIONS)
+    print(
+        'Welcome to the Quiz Game!'
+        f'\nThere will be {n} questions. Good luck!'
+    )
+
+    score = sum(ask_all())
+
+    print(
+        '\nYou have successfully answered all the questions.'
+        "\nLet's see what your score is!"
+        f'\nYour score is {score} out of {n}.',
+        end=' '
+    )
+
+    if score >= n//2:
+        print(f'Well done!')
+    else:
+        print(f'You could do better!')
+
+
+if __name__ == '__main__':
+    main()
