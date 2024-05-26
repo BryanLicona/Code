@@ -1,0 +1,60 @@
+# 'thinking of a number between 1 and 100' == (Use random)
+# Prompt user for a level, 'n' - that's inclusive, using 'random' module
+# Prompt user to 'guess' that 'integer':
+        # If guess is smaller than that integer
+                # Program should output 'Too small!' and prompt user again
+        # If guess is larger than integer
+                # Program should output 'Too large!' and prompt user again
+        # If guess is the same as that integer, program should output 'Just right!' and 'exit'
+
+import random
+from random import choice
+import sys
+
+number = random.randint(1, 100)
+max_attempts = 5
+
+def get_guess():
+    while True:
+        try:
+            guess = int(input(f"Guess: "))
+            if 1 < guess < 100:
+                return guess
+            else:
+                print("Just right!")
+        except ValueError:
+            exit
+                        
+
+def check_guess(guess, number):
+    
+    if guess < number:
+        return 'Too small!'
+    elif guess > number:
+        return 'Too large!'
+    elif guess == number:
+        return 'Just right!'
+    else:
+        exit
+
+def play_game():
+    attempts = 0
+    won = False
+    
+    while attempts < max_attempts:
+        attempts += 1
+        guess = get_guess()
+        result = check_guess(guess, number)
+        
+        if result == "Just right!":
+            print(f"Nice! You guessed the number {number}.")
+            won = True
+            break
+        else:
+            print(f"{result}. Try again!")
+    if won == False:
+        print(f"Sorry, you ran out of attempts! The number is {number}!")
+    
+if __name__ == "__main__":
+    print("Ready to Guess!")
+    play_game()
