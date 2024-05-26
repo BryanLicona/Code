@@ -1,0 +1,47 @@
+from lib import *
+import input
+import pytest
+
+
+    
+with open("input.txt", "r") as f:
+    input_data = f.read()
+
+
+
+def main():
+    test_num_to_words()
+    test_ext()        
+
+def test_num_to_words():
+    assert wrds_format("1999-01-01") == ("Thirteen million, one hundred ninety thousand, four hundred")
+    assert wrds_format("1998-01-01") == ("Thirteen million, seven hundred sixteen thousand")    
+    assert wrds_format("1997-01-01") == ("Fourteen million, two hundred forty-one thousand, six hundred")
+    assert wrds_format("2000-01-01") == ("Twelve million, six hundred sixty-four thousand, eight hundred")
+    assert wrds_format("2001-06-01") != ("2001-06-01")
+    assert wrds_format("2005-08-12") != ("Twelve hundred")
+    assert wrds_format("2029-01-01") == ("Minus two million, five hundred eighty-nine thousand, one hundred twenty")
+    assert wrds_format("2021-1-1") == ("One million, six hundred eighteen thousand, five hundred sixty")
+        
+def test_ext():
+    with pytest.raises(SystemExit):
+        convert_min("200-12-42") 
+    with pytest.raises(SystemExit):
+        convert_min("September 3, 2022")
+    with pytest.raises(SystemExit):
+        convert_min("2004-01-32")
+    with pytest.raises(SystemExit):
+        convert_min("2005/01/01")
+    with pytest.raises(SystemExit):
+        convert_min("Jan. 4, 2024")
+    with pytest.raises(SystemExit):
+        convert_min("")
+    with pytest.raises(SystemExit):
+        convert_min("2022.01.01")
+    with pytest.raises(SystemExit):
+        convert_min("dog")
+    
+if __name__ == "__main__":
+    main()
+    
+
