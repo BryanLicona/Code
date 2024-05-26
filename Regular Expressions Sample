@@ -1,0 +1,37 @@
+#regular expression project to match email addresses
+import re
+
+text = input("What's your email address? ")
+# pattern = re.compile(r"([a-zA-Z0-9\.\-\_\!]+)(@)([a-zA-Z0-9.-_!]+)(\.)([a-zA-Z]+)")
+pattern = re.compile("[a-zA-z0-9\.\-\_]+\@[a-zA-Z0-9]+\.[a-zA-Z]+")
+result = pattern.findall(text)
+print(result)
+# formatted_username = (pattern.group(1))
+# formatted_splitter = (pattern.group(2))
+# formatted_domain = (pattern.group(3))
+# formatted_splitter2 = (pattern.group(4))
+# formatted_end = (pattern.group(5))
+
+# email_format = f"{formatted_username}{formatted_splitter}{formatted_domain}{formatted_splitter2}{formatted_end}"
+
+# According to CS50 the expression below is used to ensure a valid email is inputted:
+#structure = re.compile(r"#^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
+
+#result = structure.findall(text)
+#result = pattern.findall(text)
+
+#print(result)
+
+#^([a-zA-Z0-9\.\!\#\$\%\&\'\*\+\\\/\=\?\^\_\`\{|}\~\-]+)(\@)([a-zA-Z0-9](?:[a-zA-Z0-9-_]{0,61}[a-zA-Z0-9\_\-\.])?)(?:(\.)([a-zA-Z0-9\-\_\.\/](?:[a-zA-Z0-9\-\_\.]{0,61}[a-zA-Z0-9])?)*$)
+#([a-zA-Z0-9\.\-\_\!]+)(@)([a-zA-Z0-9.-_!]+)(\.)([a-zA-Z]+)
+
+# matches = re.finditer(regex, test_str, re.MULTILINE)
+
+# for matchNum, match in enumerate(matches, start=1):
+#     print("Match {matchNum} was found at {start}-{end}: {match}".format(matchNum=matchNum, start = match.start(), end= match.end(), match=match.group()))
+    
+#     for groupNum in range(0, len(match.groups())):
+#         groupNum = groupNum +1
+        
+#         print("Group {groupNum} found at {start}-{end}: {group}".format(groupNum = groupNum, start = match.start(groupNum), end = match.end(groupNum), group = match.group(groupNum)))
+        
