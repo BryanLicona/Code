@@ -1,0 +1,35 @@
+from for_words import *
+import pytest
+
+
+def main():
+        
+    test_lower_case()
+    test_upper_case()
+    test_punctuation()   
+
+
+
+def test_lower_case():
+    assert count("um") == "1"
+    assert count("Why are you using um so often in, um, a sentence?") == 2
+    assert count("uncircumcised is a medical terminology.") == 0
+    assert count("thumbnails were more popular, um, in the 2000s.") == 1
+    
+
+def test_upper_case():
+    assert count("Um, thanks for the album.") == 1
+    assert count("UM is for yelling, Um is for beginning a sentence.") == 2
+    assert count("Circumcision, um, is a form of, um, a medical procedure or religious ceremony.") == 2
+    assert count("Xiphisternum, is the lowermost part of the breastbone.") == 0
+    
+    
+def test_punctuation():
+    assert count("um?") == 1
+    assert count("Um, thanks for the album.") == 1
+    assert count("UM! I think I, um, forgot: Um, do you, um, remember?") == 4
+    assert count("Flagellum!!!") == 0
+
+
+if __name__ == "__main__":
+    main()
