@@ -1,0 +1,29 @@
+import  twttr
+import pytest
+import unittest
+
+def main():
+    message = twttr.Statement
+    print(shorten(message))
+    
+
+def shorten(word):
+    new_word = ""
+    twttr.letters = ["a", "e", "i", "o", "u"]
+    for letters in word:
+        if word.lower() not in twttr.letters:
+            word += letters
+    return new_word
+            
+            
+    #self.assertEqual(shorten("Hello"), "Hll")
+    #self.assertEqual(shorten("world"), "wrld")
+    #self.assertEqual(shorten("AEIOU"), "")
+    #self.assertEqual(shorten("aeiou"), "")
+    #self.assertEqual(shorten(""), "")
+    #self.assertEqual(shorten("Hello, world!"), "Hll, wrld!")
+    #self.assertEqual(shorten("Hello123"), "Hll123")
+
+if __name__ == "__main__":
+    main()
+    #unittest.main() is used to use the test feature built into the code
