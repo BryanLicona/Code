@@ -1,0 +1,29 @@
+# How to create a list.
+
+l = []
+
+l.append("Dolphin")
+l.append("Whale")
+l.append("Swordfish")
+l.append("Shark")
+l.append("Puffer fish")
+l.append("Crab")
+print(l)
+
+l.remove("Shark")
+print(l)
+
+# Loops
+l =[]
+count = 0 
+while True:
+    count += 1
+    print(f"{count}")
+    if count >= 5:
+        break
+    
+for i in range(5):
+    message = ''
+    for sub_number in range(i + 1):
+        message += f"{sub_number} "
+    print(message)
