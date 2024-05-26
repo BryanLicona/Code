@@ -1,0 +1,8 @@
+import sys
+from sys import *
+# Will this actually.....
+# work
+# Testing the code
+
+prompt = input("Will my program actually work? ")
+print(f"{prompt} Yes, it will!")
