@@ -1,0 +1,18 @@
+# a program that expects two command-line arguments
+import sys
+from PIL import Image
+
+images = []
+# this proposes you want to take in file names as arguments (Images)
+for arg in sys.argv[1:]:
+    image = Image.open(arg)
+    images.append(image)
+# loop =-0 means it'll loop forever
+images[0].save(
+    "costumes.gif", save_all=True, append_images=[images[1]], duration=200, loop=0
+)
+
+
+# with images run the file "python costumes.py (file1), (file2)
+# after, in terminal type 'code costumes.gif' and you should see your 
+# newly created gif based on the two images
