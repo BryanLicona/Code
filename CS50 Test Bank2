@@ -1,0 +1,23 @@
+from bank2 import value
+
+
+
+def main():
+    test_twttr()
+    
+def test_twttr():
+    assert shorten("Hello") == "Hll"
+    assert shorten("HELLO") == "HLL"
+    assert shorten("world") == "wrld"
+    assert shorten("hello, WORLD") == "hll, WRLD"
+    assert shorten("123456") == "123456"
+    assert shorten("AEIOU") == ""
+    assert shorten("aeiou") == ""
+    assert shorten("") == ""
+    assert shorten("Hello, world!") == "Hll, wrld!"
+    assert shorten("Hello123") == "Hll123"
+    assert shorten("$%&@!") == "$%&@!"
+    
+
+if __name__ == "__main__":
+    main()
