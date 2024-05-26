@@ -1,0 +1,27 @@
+# Used to match words.
+# In this case it's the word 'um' 
+# Also it is specific to that word. So words such as
+    # thumb or numb or circumference will not match
+    # test with other words
+
+import re
+import sys
+
+def main():
+    print(count(input("Text: ")))
+    
+    
+def count(s):
+    
+    s = re.findall(r"(?:^|\W)um(?:$|\W)", s, re.IGNORECASE)
+    
+    if s is None:
+        raise TypeError
+    
+    count = len(s)
+
+    return count
+
+    
+if __name__ == "__main__":
+    main()
