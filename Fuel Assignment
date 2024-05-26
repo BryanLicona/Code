@@ -1,0 +1,31 @@
+def main():
+    try:
+        fraction = input("Fraction: ")
+        percentage = convert(fraction)
+        result = gauge(percentage)
+        print(f"{result}")
+    except ValueError as e:
+        raise
+
+def convert(fraction):
+    try:
+        X, Y = map(int, fraction.split('/'))
+
+        percentage = round(X / Y * 100)
+
+        return percentage if 0 <= percentage <= 100 else "Value out of range"
+
+    except (ValueError, ZeroDivisionError):
+        raise
+    return input("Fraction: ")
+
+def gauge(percentage):
+    if percentage <= 1:
+        return "E"
+    elif percentage >= 99:
+        return "F"
+    else:
+        return f"{round(percentage)}%"
+
+if __name__ == "__main__":
+    main()
