@@ -1,0 +1,16 @@
+### Remember you need a seperate code program to work with the testing code below 
+
+from hello import hello
+
+def test_defualt():
+    assert hello() == "hello, world"
+    
+    
+def test_argument():    
+    assert hello("Bryan") == "hello, Bryan"
+    
+    
+# another option when using a list:
+def test_argument():    
+    for name in ['Hermione', 'Harry', 'Ron']:
+        assert hello(name) == f"hello, {}"
