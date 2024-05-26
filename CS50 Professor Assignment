@@ -1,0 +1,65 @@
+# Prompt user for a level, n
+# If the user does not input '1,2, or 3, the program should prompt again
+# Randomly generate ten(10) math problems formatted as 'X + Y = '
+    # wherein X and Y is a non-negative integer with 'n' digits
+    # No need to support operations other than addition (+).
+# Prompt user to solve each of those problems
+# If answer is not correct (or not even numbers), program should output 'EEE'
+    # And prompt user again
+    # allowing the user up to three tries in total for that problem
+# If user still does not answer correctly after three tries
+    # the program should output the correct answer.
+# The program should ultimately output the user's score: 
+    # The number of correct answers out of 10
+#Structure program as follows
+    # get_level prompts (and, if need be, re-prompts) the user for a level and returns 1,2, or 3
+    # generate_integer returns a randomly generated non-negative integer
+        # with level digits or raises a ValueError if level is not 1,2, or 3
+        
+        
+import random
+
+def main():
+    player_difficulty = get_level()
+    generate_integer(player_difficulty)
+
+def get_level():
+    while True:
+        player_difficulty = input("Level: ")
+        if player_difficulty not in ['1', '2', '3']:
+            continue
+        return player_difficulty
+
+def generate_integer(player_difficulty):
+    score = 0
+    for i in range(10):
+        attempts = 0
+        if player_difficulty == "1":
+            x = random.randint(0, 9)
+            y = random.randint(0, 9)
+        elif player_difficulty == "2":
+            x = random.randint(10, 99)
+            y = random.randint(10, 99)
+        else:
+            x = random.randint(100, 999)
+            y = random.randint(100, 999)
+            
+        while True:
+            
+            print(f"{x} + {y} = ", end="")
+            player_answer = input()
+            if player_answer  == str(x + y):
+                score += 1
+                break
+            elif player_answer != str(x + y) and attempts != 2:
+                print("EEE")
+                attempts += 1
+                continue
+            else:
+                print("EEE")
+                print(f"{x} + {y} = {x + y}")
+                break
+    print("Score:",score)
+            
+if __name__ == "__main__":
+    main()
