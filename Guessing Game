@@ -1,0 +1,32 @@
+import random
+
+def get_level():
+    while True:
+        try:
+            level = int(input("Level: "))
+        except ValueError:
+            continue
+        if level <= 0:
+            continue
+        
+        number = random.randint(1,level)
+        break
+
+def obtain_guess(number):
+    while True:
+        try:
+            guess = int(input("Guess: "))
+            if guess <= 0:
+                continue
+        except ValueError:
+            continue
+        
+        if guess < number:
+            print("Too small!")
+        elif guess > number:
+            print("Too large!")
+        else:
+            print("Just right!")
+            break
+    
+    
