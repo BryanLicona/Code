@@ -1,0 +1,49 @@
+import refueling
+from refueling import *
+import pytest
+
+
+def main():
+    test_Zero_Division()
+    test_ValueError()
+    test_input_accuracy()
+    test_gauge_accuracy()
+    
+def test_ValueError():
+    with pytest.raises(ValueError):
+        assert convert("cat/dog") == ValueError
+    with pytest.raises(ValueError):
+        assert convert("cats/dogs") == ValueError
+    with pytest.raises(ValueError):
+        assert convert("dog/dog") == ValueError
+    with pytest.raises(ValueError):
+        assert convert("cat/dog") == ValueError
+    with pytest.raises(ValueError):
+        assert convert("monkey/monkey") == ValueError
+
+def test_Zero_Division():
+    with pytest.raises(ZeroDivisionError):
+        assert convert("1/0") == ZeroDivisionError
+    with pytest.raises(ZeroDivisionError):
+        assert convert("4/0") == ZeroDivisionError
+    with pytest.raises(ZeroDivisionError):
+        assert convert("100/0") == ZeroDivisionError
+
+def test_input_accuracy():
+    assert convert('1/4') == 25
+    assert convert('1/3') == 33
+    assert convert('1/2') == 50
+    assert convert('3/4') == 75
+    assert convert('1/100') == 1
+    assert convert('99/100') == 99
+
+def test_gauge_accuracy():
+    assert gauge(25) == '25%'
+    assert gauge(33) == '33%'
+    assert gauge(50) == '50%'
+    assert gauge(75) == '75%'
+    assert gauge(1) == 'E'
+    assert gauge(99) == 'F'
+    
+if __name__ == "__main__":
+    main()
