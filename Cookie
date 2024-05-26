@@ -1,0 +1,96 @@
+import emoji
+
+
+class Jar:
+    
+    CAPACITY = 12
+    
+    def __init__(self, capacity=12, size=0, deposit=0, withdraw=0):
+        
+        if 0 > capacity > 12:
+            raise ValueError
+
+        self.capacity = capacity
+        self.size = size
+        self.deposit = deposit
+        self.withdraw = withdraw
+        
+    def __str__(self):
+        return f"I returned {self.deposit} and took out {self.withdraw}. The jar holds {self.capacity}, but currently it has {self.size} inside of it!"
+    
+    @classmethod
+    def get(cls):
+        capacity = input("How many fit inside the jar? ")
+        size = input("How many are currently inside the jar? ")
+        deposit = input("How many would you like to deposit? ")
+        withdraw = input("How many would you like to take out of the jar? ")
+    
+        
+        # n = int(input("How many cookies do you want? "))
+        # print(('🍪' * n))
+        
+        
+        return cls(capacity, size, deposit, withdraw)
+    
+    # def charm(self):
+        
+    #     n = int(input("How many cookies do you want? "))
+    #     return('🍪' * n)
+        
+
+
+    
+    # def deposit(self, deposit=0):
+    #     self._deposit = deposit
+    
+        
+    # def withdraw(self, withdraw=0):
+    #     self._withdraw = withdraw
+        
+    # @property
+    # def capacity(self, capacity=12):
+    #     if 0 > capacity > 12:
+    #         raise ValueError
+    #     self._capacity = capacity
+        
+    # @capacity.setter
+    # def capacity(self, new_value=0):
+    #     if new_value < 0:
+    #         raise ValueError
+    #     if new_value > 12:
+    #         raise ValueError
+    #     self._score = new_value
+        
+        
+    # @property
+    # def size(self, size=0):
+    #     self._size = size
+    
+    # @size.setter
+    # def size(self, new_size_value=0):
+    #     if new_size_value < 0:
+    #         raise ValueError
+    #     if new_size_value > 12:
+    #         raise ValueError
+    #     self._size = new_size_value
+        
+def main():
+    cookie = Jar.get()
+    n = int(input("How many cookies do you want? "))
+    print(('🍪' * n))
+    # print(cookie.charm())
+    
+# def get_cookie():
+
+#     deposit = int(input("Deposit: "))
+#     withdraw = int(input("How many cookies do you want? "))
+#     capacity = int(input("How many cookies fit inside the jar? "))
+#     size = int(input("How many cookies are currently inside? "))
+#     treat = input("What do you want? ")
+#     return Jar(deposit, withdraw, capacity, size, treat)
+
+
+    
+    
+if __name__ == "__main__":
+    main()
