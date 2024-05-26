@@ -1,0 +1,39 @@
+
+from tkinter import *
+from tkinter import ttk, messagebox
+
+root = Tk()
+ttk.Entry(root).grid()
+m = Menu(root)
+m_edit = Menu(m)
+m.add_cascade(menu=m_edit, label="Edit")
+m_edit.add_command(label="Paste", command=lambda: root.focus_get().event_generate("<<Paste>>"))
+m_edit.add_command(label="Find...", command=lambda: root.event_generate("<<OpenFindDialog>>"))
+m_edit.add_command(label="Testing1", command=lambda: root.event_generate("<<Testing1>>"))
+
+m_file = Menu(m)
+m.add_cascade(menu=m_file, label="File")
+m_file.add_command(label="Open", command=lambda: root.focus_get().event_generate("<<Open>>"))
+m_file.add_command(label="Save As...", command=lambda: root.event_generate("<<Save As...>>"))
+m_file.add_command(label="Testing2", command=lambda: root.event_generate("<<Testing2>>"))
+
+m_view = Menu(m)
+m.add_cascade(menu=m_view, label="View")
+m_view.add_command(label="Explorer", command=lambda: root.focus_get().event_generate("<<Explorer>>"))
+m_view.add_command(label="Testing", command=lambda: root.event_generate("<<Testing>>"))
+m_view.add_command(label="Testing3", command=lambda: root.event_generate("<<Testing3>>"))
+
+m_help = Menu(m)
+m.add_cascade(menu=m_help, label="Help")
+m_help.add_command(label="Welcome", command=lambda: root.focus_get().event_generate("<<Welcome>>"))
+m_help.add_command(label="About", command=lambda: root.event_generate("<<About>>"))
+m_help.add_command(label="Testing4", command=lambda: root.event_generate("<<Testing4>>"))
+# line of code below needs to be added at the end of all the tabs. 
+# not for each one. If you add for each one the program will end after the first tab
+root['menu'] =m
+
+def launchFindDialog(*args):
+    messagebox.showinfo(message="I hope you find what you're looking for!")
+    
+root.bind("<<OpenFindDialog>>", launchFindDialog)
+root.mainloop()
