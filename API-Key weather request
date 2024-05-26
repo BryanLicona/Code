@@ -1,0 +1,19 @@
+import requests
+
+#Foundational information to get information
+API_KEY = "" #Get from an API website
+base_url = " (link of site requesting information) "
+
+city = input("Enter a city name: ")
+request_url = f"{(base_url)}?appid={API_KEY}&q={city}"
+response = requests.get(request_url)
+
+if response.status_code == 200:
+    data = response.json()
+    weather = data['weather'][0]['description']
+    temperature = round(data['main']['temp'] - 273.15, 2)
+    
+    print("Weather:", weather)
+    print("Temperature:", temperature, "celsius")
+else:
+    print("An error occured.")
