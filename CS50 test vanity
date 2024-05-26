@@ -1,0 +1,58 @@
+from vanity import *
+import pytest
+
+
+
+
+def main():
+    test_first()
+    test_len()
+    test_digits()
+    test_zero()
+    test_punctuation()
+
+def test_first():
+    assert is_valid("XYZLMO") == True
+    assert is_valid("9LMNOP") == False
+    assert is_valid("A6DNMF") == False
+    assert is_valid("63CDEF") == False
+
+def test_len():
+    assert is_valid("XYZABC") == True
+    assert is_valid("XYZAB") == True
+    assert is_valid("XYZ") == True
+    assert is_valid("XY") == True
+    assert is_valid("Z") == False
+    assert is_valid("ABCDEF") == True
+
+def test_digits():
+    assert is_valid("XYZ678") == True
+    assert is_valid("ZYXD78") == True
+    assert is_valid("ABCRF1") == True
+    assert is_valid("AA") == True
+    assert is_valid("A2") == False
+    assert is_valid("2A") == False
+    assert is_valid("77") == False
+    assert is_valid(" 7") == False
+    assert is_valid("AAA222") == True
+    assert is_valid("AAA22A") == False
+
+def test_zero():
+    assert is_valid("XYZ405") == True
+    assert is_valid("CS50") == True
+    assert is_valid("CS05") == False
+    assert is_valid("GJH019") == False
+    assert is_valid("KLID01") == False
+
+def test_punctuation():
+    assert is_valid("SAD,23") == False
+    assert is_valid("MAD 23") == False
+    assert is_valid("BAD.12") == False
+    assert is_valid("DA:12") == False
+    assert is_valid("TO/45") == False
+    assert is_valid("PI3.14") == False
+    assert is_valid("PI3!14") == False
+    assert is_valid("PI 14") == False
+
+if __name__ == "__main__":
+    main()
