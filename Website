@@ -1,0 +1,77 @@
+#### This is incomplete. Just curious about web page creation, but the template works if you want to use it 
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="styles.css.html"
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <div>
+        <h1> Bryan Licona's Website</h1>
+        <img src="images/contentImage.jpg" />
+        <p> This is a paragraph explaining this section of content associated
+            with the above image and title.
+        </p>
+    </div>
+    <body>
+        <p>
+            Hello Beautiful World
+        </p>
+        <p>
+            This is my introductory paragraph to my Web Page! This Text will wrap 
+            around in a single block and then after the paragarph is done there wil be a line of white space. 
+        </p>
+        <p>
+            this is my text.
+            <br /> 
+            this text will appear on the next line down.
+        </p>
+        <p>
+            <ul>
+                <li> This is one element in the list</li>
+                <li> One of the elements</li>
+                <li> Another element</li>
+            </ul>
+            <ol>
+                <li> This is the first element</li>
+                <li> The second element</li>
+                <li> Finally, this is the third element</li>
+            </ol>
+        </p>
+    </body>
+    <body>
+        <header>
+            <h1> Welcome to my Page!</h1>
+            <section>
+                <h2> My very first web page</h2>
+            </section>
+        </header>
+    </body>
+    <body>
+        <header>
+            <h1> My Page</h1>
+        </header>
+        <section>
+            <h2> My Personal Blog</h2>
+        </section>
+    </body>
+    <body>
+        <header>
+            <h1> My Personal Page</h1>
+        </header>
+        <section>
+            <h2> My Business Blog</h2>
+        </section>
+        <footer>
+            <p>
+                copyright 2024
+            </p>
+        </footer>
+    </body>
+</html>
+
+
